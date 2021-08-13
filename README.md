@@ -98,4 +98,12 @@ The iOS project can be found in the `TestEngineerChallenge-iOS` directory. This 
 1. When Username field lose focus validate user name that:
     - It's length is between 3 and 10
     - Verify same user is not already created
+1. When Password field get key stroke
+    - Show list of validations with green tick and red cross
+1. Increase password strength by changin requirements like:
+    - Change minimum characters to 8
+    - Should have atleast 1 Alphabet
+    - Should have atleast 1 Numeric Character
+    - Should have atlease 1 Caps Alphabet
+    - Should atlease 1 sign like '!@#$%^&*'
 1. We could use a welcome message upon Sign Up, no way to verify if Account is created
