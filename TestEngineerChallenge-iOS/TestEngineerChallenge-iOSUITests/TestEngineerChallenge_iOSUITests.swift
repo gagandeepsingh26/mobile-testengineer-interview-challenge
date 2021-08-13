@@ -31,7 +31,7 @@ class TestEngineerChallenge_iOSUITests: XCTestCase {
         let passwordTextField = app.textFields["password"]
         // Another Bug here: placeholder value is "Pasword" instead of "Password"
         // Once fixed need to Update
-        // worked around to complete the flow
+        // worked around to complete the flow for Bug 2 in README
         XCTAssert(passwordTextField.value as! String == "Pasword", "Expect value Password")
         passwordTextField.tap()
         passwordTextField.typeText("test123")
@@ -44,11 +44,12 @@ class TestEngineerChallenge_iOSUITests: XCTestCase {
         XCTAssert(logoutButton.waitForExistence(timeout: 10), "Expect logout button")
         logoutButton.tap()
         
+        // Failed due to bug Number 1 in README
         XCTAssert(usernameTextField.value as! String == "Username", "Expect value Username")
         XCTAssert(passwordTextField.value as! String == "Password", "Expect value Password")
     }
     
-    // This test will fail because of BUG
+    // This test will fail because of BUG 4 in README
     // One should not be able to click on Submit multiple time
     // Logout button vissible make this fail
     // Once fixed few changes in this test will be required
@@ -72,10 +73,38 @@ class TestEngineerChallenge_iOSUITests: XCTestCase {
             sleep(5)
         }
         
+        // Fails here because on Bug 4 in README
         let logoutButton = app.navigationBars["TestEngineerChallenge_iOS.LoggedInView"].buttons["Logout"]
         XCTAssert(logoutButton.waitForExistence(timeout: 3), "Expect Logout button")
     }
     
+    // This test fails because of Bug 5 in README
+    func testLoginAndLogoutSubmitWithSameUsername() throws {
+        let usernameTextField = app.textFields["username"]
+        usernameTextField.tap()
+        usernameTextField.typeText("test")
+        
+        let returnButton = app.buttons["Return"]
+        returnButton.tap()
+
+        let passwordTextField = app.textFields["password"]
+        passwordTextField.tap()
+        passwordTextField.typeText("test123")
+        returnButton.tap()
+        
+        let submitStaticText = app/*@START_MENU_TOKEN@*/.staticTexts["Submit"]/*[[".otherElements[\"authentication\"]",".buttons[\"Submit\"].staticTexts[\"Submit\"]",".buttons[\"submit\"].staticTexts[\"Submit\"]",".staticTexts[\"Submit\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        submitStaticText.tap()
+
+        let logoutButton = app.navigationBars["TestEngineerChallenge_iOS.LoggedInView"].buttons["Logout"]
+        XCTAssert(logoutButton.waitForExistence(timeout: 10), "Expect logout button")
+        logoutButton.tap()
+        
+        submitStaticText.tap()
+        
+        // Fails here because on Bug 5 in README
+        let errorStaticText = app.staticTexts["Error"]
+        XCTAssert(errorStaticText.waitForExistence(timeout: 3), "Expect Error")
+    }
     // Adding Few validation test to check error messages
     func testSignupWithNoUsernameAndPassword() throws {
         // Submit without Username and Password
