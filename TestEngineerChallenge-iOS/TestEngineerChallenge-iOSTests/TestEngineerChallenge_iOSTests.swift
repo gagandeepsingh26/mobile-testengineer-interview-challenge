@@ -36,7 +36,33 @@ class TestEngineerChallenge_iOSTests: XCTestCase {
         // then
         XCTAssertEqual(output, expectedResult, "Expect no error for valid Username and Password")
     }
+    
+    func testAuthenticatorWithMinimumCharacterUsernameAndPassword() {
+        // given
+        let username="use" // 3 characters
+        let password="passw" // 5 charcters
+        let expectedResult: Result<Bool, AuthenticatorError> = .success(true)
 
+        // when
+        let output = sut.authenticate(username: username, password: password)
+
+        // then
+        XCTAssertEqual(output, expectedResult, "Expect no error for valid Username and Password")
+    }
+    
+    func testAuthenticatorWithMaximumCharacterUsernameAndPassword() {
+        // given
+        let username="username10" // 10 charcters
+        let password="password1234567" // 15 charcters
+        let expectedResult: Result<Bool, AuthenticatorError> = .success(true)
+
+        // when
+        let output = sut.authenticate(username: username, password: password)
+
+        // then
+        XCTAssertEqual(output, expectedResult, "Expect no error for valid Username and Password")
+    }
+    
     func testAuthenticatorWithEmptyUsernameAndPassword() {
         // given
         let username=""
