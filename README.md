@@ -38,7 +38,7 @@ The iOS project can be found in the `TestEngineerChallenge-iOS` directory. This 
         - Username text field should have "Username"
         - Password field should have "Password" 
 
-1. Placeholder value for passord text field have typo
+1. Placeholder value for passw3ord text field have typo
     - Steps to reproduce
         - Analyize Sign-Up page
     
