@@ -21,3 +21,57 @@ The iOS project can be found in the `TestEngineerChallenge-iOS` directory. This 
 ## Answers
 #### Bugs/Improvements
 - List here all the bugs you can find in the app and potential improvements to the user experience.
+
+#### Bugs
+1. Upon logout username and password not cleared out
+    - Steps to reproduce
+        - Fill "test" in username text field
+        - Fill "pass1234" in password field
+        - Tap on Submit
+        - Tap on Logout
+
+    - Actual Result 
+        - Username text field still have "test"
+        - Password Field Still have "pass1234"
+
+    - Expected result
+        - Username text field should have "Username"
+        - Password field should have "Password" 
+
+1. Placeholder value for passord text field have typo
+    - Steps to reproduce
+        - Analyize Sign-Up page
+    
+    - Actual text
+        - Placeholder value is "Pasword" in password field
+
+    - expected text
+        - Placeholder valure should be "Password" in password field
+
+1. Typing password doesnot show "*"
+    - Steps to Reproduce
+        - Type "pass1234" in password field
+
+    - Actual Result
+        - Text field shows "pass1234"
+
+    - Expected Result
+        - Text Field should show "*" like "********"
+        - Number of * should be same as number characters on password
+
+1. Multiple Taps on Submit cause multiple requests
+    - Steps to reproduce
+        - Add valid username to username text feild
+        - Add valid password to password field
+        - Tap on Sumbit Button
+        - Tap on Submit Button again 
+
+    - Actual result 
+        - Open multiple views
+            - View with "Logout"
+            - View with "Back"
+
+    - Expected Result
+        - Loading sign should appear is request is already made
+        - No second tap should happend 
+        - Only Submit View should be opened
