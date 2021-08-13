@@ -73,5 +73,29 @@ The iOS project can be found in the `TestEngineerChallenge-iOS` directory. This 
 
     - Expected Result
         - Loading sign should appear is request is already made
-        - No second tap should happend 
+        - Disable Submiot button, second tap should not happend 
         - Only Submit View should be opened
+
+1. Multiple Users can be created using same Username
+    - Steps to reproduce
+        - Add "user32" to username text feild
+        - Add valid password to password field
+        - Tap on Sumbit Button
+        - Tap on Logout
+        - Add "user32" to username text feild
+        - Add valid password to password field
+        - Tap on Sumbit Button
+
+    - Actual result 
+        - Take to view with logout []
+
+    - Expected Result
+        - Should fail as user already created
+
+#### Improvements
+1. Add Margin for Username and Password placeholder
+1. Bottom Margin for Submit button [looks better right after Password field ]
+1. When Username field lose focus validate user name that:
+    - It's length is between 3 and 10
+    - Verify same user is not already created
+1. We could use a welcome message upon Sign Up, no way to verify if Account is created
